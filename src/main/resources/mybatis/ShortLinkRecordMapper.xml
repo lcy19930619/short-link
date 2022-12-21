@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.jlxxw.link.mapper.ShortLinkRecordMapper">
+    <resultMap id="BaseResultMap" type="net.jlxxw.link.domain.ShortLinkRecordDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="uid" jdbcType="BIGINT" property="uid"/>
+        <result column="original_url" jdbcType="VARCHAR" property="originalUrl"/>
+        <result column="effective" jdbcType="BIT" property="effective"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="short_link_key" jdbcType="CHAR" property="shortLinkKey"/>
+        <result column="snowflake_id" jdbcType="BIGINT" property="snowflakeId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, uid, original_url, effective, remark, create_time, short_link_key,snowflake_id
+    </sql>
+
+    <select id="selectByKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from short_link_record
+        where short_link_key = #{key}
+    </select>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="net.jlxxw.link.domain.ShortLinkRecordDO"
+            useGeneratedKeys="true">
+        insert into short_link_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                uid,
+            </if>
+            <if test="originalUrl != null">
+                original_url,
+            </if>
+            <if test="effective != null">
+                effective,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="shortLinkKey != null">
+                short_link_key,
+            </if>
+            <if test="snowflakeId != null">
+                snowflake_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                #{uid,jdbcType=VARCHAR},
+            </if>
+            <if test="originalUrl != null">
+                #{originalUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="effective != null">
+                #{effective,jdbcType=BIT},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="shortLinkKey != null">
+                #{shortLinkKey,jdbcType=CHAR},
+            </if>
+            <if test="snowflakeId != null">
+                #{snowflakeId}
+            </if>
+        </trim>
+    </insert>
+</mapper>

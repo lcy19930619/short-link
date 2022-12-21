@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: short-link
+link:
+  # 雪花id 数据中心id
+  snowflake-data-center-id: 0
+  # 雪花id 工作中心id
+  snowflake-work-id: 0
+  # 短链接失效时的默认跳转地址
+  default-link: jlxxw.net
+  # 短链接域名
+  shortLink-domain: jlxxw.net
+  # 保存点击记录
+  save-click-record: true
