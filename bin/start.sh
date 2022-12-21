@@ -1,6 +1,6 @@
 #!/bin/bash
 
-APP_NAME='short-link.jar'
+APP_NAME='short-link'
 # 等待应用启动的时间
 APP_START_TIMEOUT=80
 # 应用端口
